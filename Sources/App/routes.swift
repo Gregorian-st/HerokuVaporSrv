@@ -15,4 +15,10 @@ func routes(_ app: Application) throws {
     app.post("getProductReviews", use: reviewController.getProductReviews)
     app.post("addProductReview", use: reviewController.addProductReview)
     app.post("removeProductReview", use: reviewController.removeProductReview)
+    
+    let basketController = BasketController()
+    app.post("addToBasket", use: basketController.addToBasket)
+    app.post("deleteFromBasket", use: basketController.deleteFromBasket)
+    app.post("getBasket", use: basketController.getBasket)
+    app.post("payBasket", use: basketController.payBasket)
 }
