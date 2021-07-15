@@ -12,4 +12,8 @@ struct User: Content {
     var user_login: String
     var user_name: String
     var user_lastname: String
+    var email: String
+    var gender: String
+    var credit_card: String
+    var bio: String
 }

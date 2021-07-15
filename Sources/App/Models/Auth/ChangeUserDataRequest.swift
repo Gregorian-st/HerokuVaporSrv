@@ -11,6 +11,8 @@ struct ChangeUserDataRequest: Content {
     var id_user: Int
     var username: String
     var password: String
+    var name: String
+    var surname: String
     var email: String
     var gender: String
     var credit_card: String

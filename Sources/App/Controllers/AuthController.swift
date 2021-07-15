@@ -31,17 +31,37 @@ class AuthController {
         
         print(body)
         
-        let userResponse = User(
-            id_user: 123,
-            user_login: "geekbrains",
-            user_name: "John",
-            user_lastname: "Doe"
+        var userResponse = User(
+            id_user: 0,
+            user_login: "",
+            user_name: "",
+            user_lastname: "",
+            email: "",
+            gender: "",
+            credit_card: "",
+            bio: ""
         )
         
-        let response = LoginResponse(
-            result: 1,
+        var response = LoginResponse(
+            result: 0,
             user: userResponse
         )
+        
+        if body.username == "Greg" && body.password == "GregPWD" {
+            userResponse = User(
+                id_user: 123,
+                user_login: "Greg",
+                user_name: "Gregory",
+                user_lastname: "Joiner",
+                email: "user@domain.com",
+                gender: "M",
+                credit_card: "1234-5678-9012-3456",
+                bio: "Some biography"
+            )
+            response.result = 1
+            response.user = userResponse
+        }
+        
         return req.eventLoop.future(response)
     }
     
