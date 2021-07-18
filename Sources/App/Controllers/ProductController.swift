@@ -16,12 +16,7 @@ class ProductController {
         
         print(body)
         
-        let response = GetGoodByIdResponse(
-            result: 1,
-            product_name: "Mouse",
-            product_price: 200.50,
-            product_description: "Mouse for PC"
-        )
+        let response = getGoodResponse(productId: body.id_product)        
         return req.eventLoop.future(response)
     }
     
@@ -32,19 +27,7 @@ class ProductController {
         
         print(body)
         
-        let productResponse1 = Product(
-            id_product: 123,
-            product_name: "Mouse",
-            price: 200.50
-        )
-        
-        let productResponse2 = Product(
-            id_product: 456,
-            product_name: "Laptop",
-            price: 110000
-        )
-        
-        let productsResponse: [Product] = [productResponse1, productResponse2]
+        let productsResponse = getFullCatalog()
         
         let response = CatalogDataResponse(
             page_number: 1,

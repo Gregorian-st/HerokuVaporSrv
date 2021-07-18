@@ -43,23 +43,19 @@ class BasketController {
         print(body)
         
         let productResponse1 = ProductBasket(
-            id_product: 123,
-            product_name: "Mouse",
-            price: 200.50,
+            product: getGoodNotEmpty(productId: 101),
             quantity: 1
         )
         
         let productResponse2 = ProductBasket(
-            id_product: 456,
-            product_name: "Laptop",
-            price: 110000,
+            product: getGoodNotEmpty(productId: 102),
             quantity: 1
         )
         
         let productsResponse: [ProductBasket] = [productResponse1, productResponse2]
         
         let response = GetBasketResponse(
-            amount: 110200.50,
+            amount: 63326,
             countGoods: 2,
             contents: productsResponse
         )

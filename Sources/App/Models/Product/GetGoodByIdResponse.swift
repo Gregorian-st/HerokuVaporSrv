@@ -9,7 +9,5 @@ import Vapor
 
 struct GetGoodByIdResponse: Content {
     var result: Int
-    var product_name: String
-    var product_price: Float
-    var product_description: String
+    var product: Product
 }

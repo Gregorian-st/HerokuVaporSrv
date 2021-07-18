@@ -8,8 +8,6 @@
 import Vapor
 
 struct ProductBasket: Content {
-    var id_product: Int
-    var product_name: String
-    var price: Float
+    var product: Product
     var quantity: Int
 }

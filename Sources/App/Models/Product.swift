@@ -9,6 +9,8 @@ import Vapor
 
 struct Product: Content {
     var id_product: Int
-    var product_name: String
+    var name: String
+    var image: String
     var price: Float
+    var description: String
 }
