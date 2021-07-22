@@ -31,16 +31,7 @@ class AuthController {
         
         print(body)
         
-        var userResponse = User(
-            id_user: 0,
-            user_login: "",
-            user_name: "",
-            user_lastname: "",
-            email: "",
-            gender: "",
-            credit_card: "",
-            bio: ""
-        )
+        var userResponse = User()
         
         var response = LoginResponse(
             result: 0,

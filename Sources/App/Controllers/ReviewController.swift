@@ -16,24 +16,12 @@ class ReviewController {
         
         print(body)
         
-        let productReviewResponse1 = ProductReview(
-            id_comment: 1,
-            id_user: 123,
-            commentText: "Very good laptop!"
-        )
-        
-        let productReviewResponse2 = ProductReview(
-            id_comment: 2,
-            id_user: 111,
-            commentText: "Best laptop for the price!"
-        )
-        
-        let productReviewsResponse: [ProductReview] = [productReviewResponse1, productReviewResponse2]
+        let productReviewsResponse = getProductReviewData(productId: body.id_product)
         
         let response = GetProductReviewsResponse(
-            result: 1,
-            id_product: 456,
-            reviews: productReviewsResponse
+            result: productReviewsResponse != nil ? 1 : 0,
+            id_product: body.id_product,
+            reviews: productReviewsResponse ?? []
         )
         return req.eventLoop.future(response)
     }
@@ -45,11 +33,27 @@ class ReviewController {
         
         print(body)
         
-        let response = AddProductReviewResponse(
-            result: 1,
-            id_comment: 1,
-            userMessage: "Comment has been submitted to moderation"
-        )
+        var response: AddProductReviewResponse
+        
+        let responseCommentId = addProductReviewData(userId: body.id_user,
+                                                    productId: body.id_product,
+                                                    commentText: body.commentText)
+        
+        if responseCommentId != 0 {
+            response = AddProductReviewResponse(
+                result: 1,
+                id_comment: responseCommentId,
+                userMessage: "Comment has been submitted to moderation"
+            )
+        } else {
+            response = AddProductReviewResponse(
+                result: 0,
+                id_comment: 0,
+                userMessage: "Wrong request!"
+            )
+        }
+        
+        
         return req.eventLoop.future(response)
     }
     

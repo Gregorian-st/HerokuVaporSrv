@@ -16,4 +16,26 @@ struct User: Content {
     var gender: String
     var credit_card: String
     var bio: String
+    
+    init() {
+        id_user = 0
+        user_login = ""
+        user_name = ""
+        user_lastname = ""
+        email = ""
+        gender = ""
+        credit_card = ""
+        bio = ""
+    }
+    
+    init(id_user: Int, user_login: String, user_name: String, user_lastname: String, email: String, gender: String, credit_card: String, bio: String) {
+        self.id_user = id_user
+        self.user_login = user_login
+        self.user_name = user_name
+        self.user_lastname = user_lastname
+        self.email = email
+        self.gender = gender
+        self.credit_card = credit_card
+        self.bio = bio
+    }
 }

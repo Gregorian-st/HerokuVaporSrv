@@ -16,7 +16,7 @@ class ProductController {
         
         print(body)
         
-        let response = getGoodResponse(productId: body.id_product)        
+        let response = getGoodDataResponse(productId: body.id_product)        
         return req.eventLoop.future(response)
     }
     

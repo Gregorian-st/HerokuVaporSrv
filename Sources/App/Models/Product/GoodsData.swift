@@ -37,7 +37,7 @@ let goods: [Product] = [
             name: "Brother DCP-T520W Printer",
             image: "https://avatars.mds.yandex.net/get-mpic/4792566/img_id5880303278598140081.png/orig",
             price: 15437,
-            description: "Core i5 Quad 1600 MHz (8250U)/8192Mb/256Gb SSD/13'/3000x2000/Win 10 Pro"),
+            description: "Brother DCP-T520W InkBenefit Plus, Multifunctional Unit, Inkjet, Black Color"),
     Product(id_product: 107,
             name: "Monitor LG 29WN600 29'",
             image: "https://avatars.mds.yandex.net/get-mpic/4591438/img_id675458542753753664.jpeg/orig",
@@ -60,7 +60,7 @@ let goods: [Product] = [
             description: "External HDD Toshiba Canvio Ready 3.2 2TB, Black Color")
 ]
 
-func getGood(productId: Int) -> Product? {
+func getGoodData(productId: Int) -> Product? {
     let index = productId - 101
     if (0...goods.endIndex - 1) ~= index {
         return goods[index]
@@ -69,8 +69,8 @@ func getGood(productId: Int) -> Product? {
     }
 }
 
-func getGoodResponse(productId: Int) -> GetGoodByIdResponse {
-    guard let product = getGood(productId: productId)
+func getGoodDataResponse(productId: Int) -> GetGoodByIdResponse {
+    guard let product = getGoodData(productId: productId)
     else {
         return GetGoodByIdResponse(result: 0, product: Product(id_product: productId,
                                                                name: "",
@@ -82,7 +82,7 @@ func getGoodResponse(productId: Int) -> GetGoodByIdResponse {
 }
 
 func getGoodNotEmpty(productId: Int) -> Product {
-    guard let product = getGood(productId: productId)
+    guard let product = getGoodData(productId: productId)
     else {
         return Product(id_product: productId,
                        name: "",
