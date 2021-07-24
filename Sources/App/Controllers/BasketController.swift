@@ -16,10 +16,9 @@ class BasketController {
         
         print(body)
         
-        let response = AddToBasketResponse(
-            result: 1
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(addToBasketData(userId: body.id_user,
+                                                    productId: body.id_product,
+                                                    quantity: body.quantity))
     }
     
     func deleteFromBasket(_ req: Request) throws -> EventLoopFuture<DeleteFromBasketResponse> {
@@ -29,10 +28,7 @@ class BasketController {
         
         print(body)
         
-        let response = DeleteFromBasketResponse(
-            result: 1
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(deleteFromBasketData(userId: body.id_user, productId: body.id_product))
     }
     
     func getBasket(_ req: Request) throws -> EventLoopFuture<GetBasketResponse> {
@@ -42,24 +38,7 @@ class BasketController {
         
         print(body)
         
-        let productResponse1 = ProductBasket(
-            product: getGoodNotEmpty(productId: 101),
-            quantity: 1
-        )
-        
-        let productResponse2 = ProductBasket(
-            product: getGoodNotEmpty(productId: 102),
-            quantity: 1
-        )
-        
-        let productsResponse: [ProductBasket] = [productResponse1, productResponse2]
-        
-        let response = GetBasketResponse(
-            amount: 63326,
-            countGoods: 2,
-            contents: productsResponse
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(getBasketData(userId: body.id_user))
     }
 
     func payBasket(_ req: Request) throws -> EventLoopFuture<PayBasketResponse> {
@@ -69,10 +48,7 @@ class BasketController {
         
         print(body)
         
-        let response = PayBasketResponse(
-            result: 1
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(clearBasketData(userId: body.id_user))
     }
     
 }

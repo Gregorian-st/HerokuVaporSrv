@@ -28,7 +28,14 @@ struct User: Content {
         bio = ""
     }
     
-    init(id_user: Int, user_login: String, user_name: String, user_lastname: String, email: String, gender: String, credit_card: String, bio: String) {
+    init(id_user: Int,
+         user_login: String,
+         user_name: String,
+         user_lastname: String,
+         email: String,
+         gender: String,
+         credit_card: String,
+         bio: String) {
         self.id_user = id_user
         self.user_login = user_login
         self.user_name = user_name

@@ -8,6 +8,7 @@
 import Vapor
 
 struct AddToBasketRequest: Content {
+    var id_user: Int
     var id_product: Int
     var quantity: Int
 }

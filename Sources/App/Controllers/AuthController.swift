@@ -16,12 +16,14 @@ class AuthController {
         
         print(body)
         
-        let response = RegisterResponse(
-            result: 1,
-            userMessage: "Registration successful",
-            errorMessage: nil
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(userRegister(loginName: body.username,
+                                                 password: body.password,
+                                                 name: body.name,
+                                                 surname: body.surname,
+                                                 email: body.email,
+                                                 gender: body.gender,
+                                                 creditCard: body.credit_card,
+                                                 bio: body.bio))
     }
     
     func login(_ req: Request) throws -> EventLoopFuture<LoginResponse> {
@@ -31,29 +33,7 @@ class AuthController {
         
         print(body)
         
-        var userResponse = User()
-        
-        var response = LoginResponse(
-            result: 0,
-            user: userResponse
-        )
-        
-        if body.username == "Greg" && body.password == "GregPWD" {
-            userResponse = User(
-                id_user: 123,
-                user_login: "Greg",
-                user_name: "Gregory",
-                user_lastname: "Joiner",
-                email: "user@domain.com",
-                gender: "M",
-                credit_card: "1234-5678-9012-3456",
-                bio: "Some biography"
-            )
-            response.result = 1
-            response.user = userResponse
-        }
-        
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(userLogin(login: body.username, password: body.password))
     }
     
     func logout(_ req: Request) throws -> EventLoopFuture<LogoutResponse> {
@@ -62,6 +42,8 @@ class AuthController {
         }
         
         print(body)
+        
+        userLogout(userId: body.id_user)
         
         let response = LogoutResponse(
             result: 1
@@ -76,10 +58,15 @@ class AuthController {
         
         print(body)
         
-        let response = ChangeUserDataResponse(
-            result: 1
-        )
-        return req.eventLoop.future(response)
+        return req.eventLoop.future(userChangeData(userId: body.id_user,
+                                                   loginName: body.username,
+                                                   password: body.password,
+                                                   name: body.name,
+                                                   surname: body.surname,
+                                                   email: body.email,
+                                                   gender: body.gender,
+                                                   creditCard: body.credit_card,
+                                                   bio: body.bio))
     }
     
 }

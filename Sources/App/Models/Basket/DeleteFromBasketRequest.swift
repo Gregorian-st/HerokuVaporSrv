@@ -8,5 +8,6 @@
 import Vapor
 
 struct DeleteFromBasketRequest: Content {
+    var id_user: Int
     var id_product: Int
 }
