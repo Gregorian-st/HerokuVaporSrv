@@ -42,7 +42,8 @@ var registeredUsers: [RegisteredUser] = [
 var loggedUsers: [LoggedUser] = []
 
 func userLogin(login: String, password: String) -> LoginResponse {
-    guard let registeredUser = registeredUsers.first(where: { $0.user.user_login == login } )
+    guard let registeredUser = registeredUsers.first(where: { $0.user.user_login == login } ),
+          registeredUser.password == password
     else { return LoginResponse(result: 0,
                                 user: User())
     }
