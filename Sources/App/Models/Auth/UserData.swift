@@ -35,7 +35,7 @@ var registeredUsers: [RegisteredUser] = [
                                email: "johndoe@domain.com",
                                gender: "M",
                                credit_card: "1234-5678-9012-3456",
-                               bio: "Some important biography"))
+                               bio: "Some very important biography"))
     
 ]
 
